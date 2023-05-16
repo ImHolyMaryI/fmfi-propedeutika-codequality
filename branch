@@ -1,0 +1,36 @@
+import java.util.;
+import java.io.;
+
+public class ConcatenateMatrices {
+public static void main(String[] args) throws IOException {
+Scanner scanner = new Scanner(new File("input.txt"));
+PrintStream output = new PrintStream("output.txt");
+String dimensions = scanner.nextLine();
+    String[] sizes = dimensions.split(" ");
+    int m = Integer.parseInt(sizes[0]);
+    int n = Integer.parseInt(sizes[1]);
+
+    String[][] matrix = new String[m][n];
+    for (int i = 0; i < m; i++) {
+        Arrays.fill(matrix[i], "");
+    }
+
+    while (scanner.hasNextLine()) {
+        for (int i = 0; i < m; i++) {
+            String line = scanner.nextLine();
+            String[] elements = line.split(" ");
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] += elements[j];
+            }
+        }
+    }
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            output.printf("[%d,%d]: %s\n", i, j, matrix[i][j]);
+        }
+    }
+
+    scanner.close();
+  }
+}
